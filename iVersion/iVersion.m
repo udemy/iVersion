@@ -497,12 +497,6 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
                 [self.delegate iVersionVersionCheckDidFailWithError:self.downloadError];
             }
             
-            //deprecated code path
-            else if ([self.delegate respondsToSelector:@selector(iVersionVersionCheckFailed:)])
-            {
-                NSLog(@"iVersionVersionCheckFailed: delegate method is deprecated, use iVersionVersionCheckDidFailWithError: instead");
-                [self.delegate performSelector:@selector(iVersionVersionCheckFailed:) withObject:self.downloadError];
-            }
             return;
         }
         
@@ -515,13 +509,6 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
             if ([self.delegate respondsToSelector:@selector(iVersionDidDetectNewVersion:details:)])
             {
                 [self.delegate iVersionDidDetectNewVersion:mostRecentVersion details:details];
-            }
-            
-            //deprecated code path
-            else if ([self.delegate respondsToSelector:@selector(iVersionDetectedNewVersion:details:)])
-            {
-                NSLog(@"iVersionDetectedNewVersion:details: delegate method is deprecated, use iVersionDidDetectNewVersion:details: instead");
-                [self.delegate performSelector:@selector(iVersionDetectedNewVersion:details:) withObject:mostRecentVersion withObject:details];
             }
             
             //check if ignored
