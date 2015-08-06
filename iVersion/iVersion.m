@@ -154,7 +154,7 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
     {
         
 #if TARGET_OS_IPHONE
-        
+#if __IPHONE_OS_VERSION_MIN_REQUIRED <= __IPHONE_7_0
         //register for iphone application events
         if (&UIApplicationWillEnterForegroundNotification)
         {
@@ -163,6 +163,7 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
                                                          name:UIApplicationWillEnterForegroundNotification
                                                        object:nil];
         }
+#endif
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didRotate)
